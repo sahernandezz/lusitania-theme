@@ -1,0 +1,9 @@
+.vscode/**
+.git/**
+.gitignore
+node_modules/**
+*.vsix
+build.py
+icon.svg
+PUBLISHING.md
+.DS_Store

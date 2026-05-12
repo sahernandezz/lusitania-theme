@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1a3a3a"/>
+      <stop offset="60%" stop-color="#0d1620"/>
+      <stop offset="100%" stop-color="#050a10"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="url(#bg)" stroke="#80deea" stroke-width="1.5"/>
+
+  <!-- Inner depth ring -->
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#1f3a3a" stroke-width="1" opacity="0.5"/>
+
+  <!-- Tide Brackets: [ wave ] -->
+  <g fill="none" stroke="#80deea" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left bracket [ -->
+    <path d="M 42 38 L 32 38 L 32 90 L 42 90"/>
+    <!-- Right bracket ] -->
+    <path d="M 86 38 L 96 38 L 96 90 L 86 90"/>
+    <!-- Wave inside (the "tide") -->
+    <path d="M 42 64 Q 50 54 58 64 T 74 64 T 86 64" stroke-width="3.5"/>
+  </g>
+
+  <!-- Center dot (depth marker) -->
+  <circle cx="64" cy="64" r="2" fill="#80deea" opacity="0.9"/>
+</svg>

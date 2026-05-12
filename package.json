@@ -1,0 +1,73 @@
+{
+  "name": "lusitania-theme",
+  "displayName": "Lusitania Theme",
+  "description": "A deep-sea inspired theme. Six variants \u2014 Trench, Midnight, Abyssal, Steel, Oceanic and Surface (light). Tuned for JS/TS/Java/React with semantic highlighting for abstract classes, interfaces, React hooks and Java annotations.",
+  "version": "1.0.0",
+  "publisher": "sahernandezz",
+  "icon": "icon.png",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "dark",
+    "light",
+    "ocean",
+    "oceanic",
+    "deep",
+    "material",
+    "abyss",
+    "react",
+    "typescript",
+    "java"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sahernandezz/lusitania-theme.git"
+  },
+  "homepage": "https://github.com/sahernandezz/lusitania-theme#readme",
+  "bugs": {
+    "url": "https://github.com/sahernandezz/lusitania-theme/issues"
+  },
+  "galleryBanner": {
+    "color": "#0d1620",
+    "theme": "dark"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Lusitania \u2014 Trench",
+        "uiTheme": "vs-dark",
+        "path": "./themes/lusitania-trench-color-theme.json"
+      },
+      {
+        "label": "Lusitania \u2014 Midnight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/lusitania-midnight-color-theme.json"
+      },
+      {
+        "label": "Lusitania \u2014 Abyssal",
+        "uiTheme": "vs-dark",
+        "path": "./themes/lusitania-abyssal-color-theme.json"
+      },
+      {
+        "label": "Lusitania \u2014 Steel",
+        "uiTheme": "vs-dark",
+        "path": "./themes/lusitania-steel-color-theme.json"
+      },
+      {
+        "label": "Lusitania \u2014 Oceanic",
+        "uiTheme": "vs-dark",
+        "path": "./themes/lusitania-oceanic-color-theme.json"
+      },
+      {
+        "label": "Lusitania \u2014 Surface (Light)",
+        "uiTheme": "vs",
+        "path": "./themes/lusitania-surface-color-theme.json"
+      }
+    ]
+  }
+}
