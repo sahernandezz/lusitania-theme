@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="698" viewBox="0 0 720 698" font-family="Menlo, Consolas, &quot;Courier New&quot;, monospace">
+<defs><filter id="shadow" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/></filter></defs>
+<rect x="0.5" y="0.5" width="719" height="697" rx="10" ry="10" fill="#0a0d14" stroke="#1c2333" stroke-width="1" filter="url(#shadow)"/>
+<path d="M 10 0.5 L 710 0.5 Q 719.5 0.5 719.5 10 L 719.5 38 L 0.5 38 L 0.5 10 Q 0.5 0.5 10 0.5 Z" fill="#0f131c"/>
+<line x1="0" y1="38" x2="720" y2="38" stroke="#1c2333" stroke-width="1"/>
+<circle cx="20" cy="19" r="6" fill="#ff5f57"/>
+<circle cx="40" cy="19" r="6" fill="#febc2e"/>
+<circle cx="60" cy="19" r="6" fill="#28c840"/>
+<text x="360" y="23" font-size="12" fill="#546e7a" text-anchor="middle">MessageHandler.java</text>
+<text x="52" y="70" font-size="14" fill="#546e7a" text-anchor="end">1</text>
+<text x="66" y="70" font-size="14" xml:space="preserve"><tspan fill="#c792ea">package</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">com</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#ffcb6b">lusitania</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#ffcb6b">service</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="92" font-size="14" fill="#546e7a" text-anchor="end">2</text>
+<text x="66" y="92" font-size="14" xml:space="preserve"></text>
+<text x="52" y="114" font-size="14" fill="#546e7a" text-anchor="end">3</text>
+<text x="66" y="114" font-size="14" xml:space="preserve"><tspan fill="#c792ea">import</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">org.springframework.stereotype</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#ffcb6b">Service</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="136" font-size="14" fill="#546e7a" text-anchor="end">4</text>
+<text x="66" y="136" font-size="14" xml:space="preserve"><tspan fill="#c792ea">import</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">org.springframework.amqp.rabbit.annotation</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#ffcb6b">RabbitListener</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="158" font-size="14" fill="#546e7a" text-anchor="end">5</text>
+<text x="66" y="158" font-size="14" xml:space="preserve"><tspan fill="#c792ea">import</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">lombok</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#ffcb6b">Builder</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="180" font-size="14" fill="#546e7a" text-anchor="end">6</text>
+<text x="66" y="180" font-size="14" xml:space="preserve"></text>
+<text x="52" y="202" font-size="14" fill="#546e7a" text-anchor="end">7</text>
+<text x="66" y="202" font-size="14" xml:space="preserve"><tspan fill="#c792ea">@Service</tspan></text>
+<text x="52" y="224" font-size="14" fill="#546e7a" text-anchor="end">8</text>
+<text x="66" y="224" font-size="14" xml:space="preserve"><tspan fill="#c792ea">public</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">abstract</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">class</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">MessageHandler</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">{</tspan></text>
+<text x="52" y="246" font-size="14" fill="#546e7a" text-anchor="end">9</text>
+<text x="66" y="246" font-size="14" xml:space="preserve"></text>
+<text x="52" y="268" font-size="14" fill="#546e7a" text-anchor="end">10</text>
+<text x="66" y="268" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#c792ea">@Builder</tspan></text>
+<text x="52" y="290" font-size="14" fill="#546e7a" text-anchor="end">11</text>
+<text x="66" y="290" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#c792ea">public</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">static</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">class</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">Message</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">{</tspan></text>
+<text x="52" y="312" font-size="14" fill="#546e7a" text-anchor="end">12</text>
+<text x="66" y="312" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">        </tspan><tspan fill="#c792ea">private</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea" font-style="italic">String</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#eeffff">id</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="334" font-size="14" fill="#546e7a" text-anchor="end">13</text>
+<text x="66" y="334" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">        </tspan><tspan fill="#c792ea">private</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea" font-style="italic">boolean</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#eeffff">processed</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="356" font-size="14" fill="#546e7a" text-anchor="end">14</text>
+<text x="66" y="356" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#89ddff">}</tspan></text>
+<text x="52" y="378" font-size="14" fill="#546e7a" text-anchor="end">15</text>
+<text x="66" y="378" font-size="14" xml:space="preserve"></text>
+<text x="52" y="400" font-size="14" fill="#546e7a" text-anchor="end">16</text>
+<text x="66" y="400" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#c792ea">@RabbitListener</tspan><tspan fill="#89ddff">(</tspan></text>
+<text x="52" y="422" font-size="14" fill="#546e7a" text-anchor="end">17</text>
+<text x="66" y="422" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">        </tspan><tspan fill="#f78c6c">queues</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">=</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">"incoming.messages"</tspan><tspan fill="#89ddff">,</tspan></text>
+<text x="52" y="444" font-size="14" fill="#546e7a" text-anchor="end">18</text>
+<text x="66" y="444" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">        </tspan><tspan fill="#f78c6c">containerFactory</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">=</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">"rabbitFactory"</tspan></text>
+<text x="52" y="466" font-size="14" fill="#546e7a" text-anchor="end">19</text>
+<text x="66" y="466" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#89ddff">)</tspan></text>
+<text x="52" y="488" font-size="14" fill="#546e7a" text-anchor="end">20</text>
+<text x="66" y="488" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#c792ea">public</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea" font-style="italic">void</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#82aaff">onMessage</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#c3e88d">Message</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#f78c6c">message</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">{</tspan></text>
+<text x="52" y="510" font-size="14" fill="#546e7a" text-anchor="end">21</text>
+<text x="66" y="510" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">        </tspan><tspan fill="#c792ea">if</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">(</tspan><tspan fill="#f78c6c">message</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#82aaff">isProcessed</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">{</tspan></text>
+<text x="52" y="532" font-size="14" fill="#546e7a" text-anchor="end">22</text>
+<text x="66" y="532" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">            </tspan><tspan fill="#c792ea">return</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="554" font-size="14" fill="#546e7a" text-anchor="end">23</text>
+<text x="66" y="554" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">        </tspan><tspan fill="#89ddff">}</tspan></text>
+<text x="52" y="576" font-size="14" fill="#546e7a" text-anchor="end">24</text>
+<text x="66" y="576" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">        </tspan><tspan fill="#82aaff">process</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#f78c6c">message</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="598" font-size="14" fill="#546e7a" text-anchor="end">25</text>
+<text x="66" y="598" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#89ddff">}</tspan></text>
+<text x="52" y="620" font-size="14" fill="#546e7a" text-anchor="end">26</text>
+<text x="66" y="620" font-size="14" xml:space="preserve"></text>
+<text x="52" y="642" font-size="14" fill="#546e7a" text-anchor="end">27</text>
+<text x="66" y="642" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#c792ea">protected</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">abstract</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea" font-style="italic">void</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#82aaff">process</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#c3e88d">Message</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#f78c6c">message</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#89ddff">;</tspan></text>
+<text x="52" y="664" font-size="14" fill="#546e7a" text-anchor="end">28</text>
+<text x="66" y="664" font-size="14" xml:space="preserve"><tspan fill="#89ddff">}</tspan></text>
+</svg>

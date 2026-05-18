@@ -1,7 +1,13 @@
 """
-Builds the 6 Lusitania theme variants from a shared template.
-- 5 dark variants share the same syntax palette, only UI background colors vary.
-- 1 light variant (Surface) has its own UI + syntax palette designed for light backgrounds.
+Builds the Lusitania theme variants from a shared template.
+
+Variants:
+- Abyssal       — the canonical deep-blue dark theme (the main one).
+- Abyssal Deep  — darker, more dramatic. Matches the icon background (#0A0D14).
+- Abyssal Light — light variant with the same syntax spirit, tuned for daylight.
+
+The two dark variants share the same syntax palette; only UI backgrounds change.
+The light variant has its own UI + syntax palette designed for light backgrounds.
 """
 
 import json
@@ -23,9 +29,15 @@ DARK_SYNTAX = {
     "red":            "#f07178",   # JSX tags, html tags
     "red_strong":     "#ff5370",   # errors, this/super
     "cursor":         "#ffcc00",
+    # SQL accents — derived from the main palette but tuned to read well on SQL.
+    "sql_keyword":    "#c792ea",   # SELECT/FROM/WHERE — purple, matches keyword family
+    "sql_fn":         "#ffcb6b",   # COUNT/SUM/NOW — yellow, matches free function calls
+    "sql_table":      "#ffcb6b",   # table identifiers — yellow (class-like)
+    "sql_column":     "#eeffff",   # column identifiers — bright fg (property-like)
+    "sql_alias":      "#c3e88d",   # aliases — green (type-like)
 }
 
-# ── LIGHT SYNTAX PALETTE (Surface variant) ────────────────────────────────────
+# ── LIGHT SYNTAX PALETTE (Abyssal Light) ──────────────────────────────────────
 # Designed from scratch for light backgrounds. Names match DARK_SYNTAX so the
 # same token rules work for both — only color values differ.
 LIGHT_SYNTAX = {
@@ -43,6 +55,11 @@ LIGHT_SYNTAX = {
     "red":            "#c62828",   # JSX tags
     "red_strong":     "#b71c1c",   # errors
     "cursor":         "#272727",
+    "sql_keyword":    "#7b1fa2",
+    "sql_fn":         "#c9851a",
+    "sql_table":      "#c9851a",
+    "sql_column":     "#1a2733",
+    "sql_alias":      "#558b2f",
 }
 
 # ── DARK VARIANT BACKGROUNDS ──────────────────────────────────────────────────
@@ -78,6 +95,7 @@ DARK_VARIANTS = {
         "list_inactive":"#1d2027",
     },
     "abyssal": {
+        # The canonical Lusitania theme — deep blue oceanic.
         "name": "Lusitania — Abyssal",
         "bg_deepest":   "#0d1620",
         "bg_panel":     "#0d1620",
@@ -91,6 +109,23 @@ DARK_VARIANTS = {
         "sel_bg":       "#1f3a55",
         "sel_weak":     "#1f3a5544",
         "list_inactive":"#101d2a",
+    },
+    "abyssal-deep": {
+        # NEW — darker, more dramatic. Matches the icon background. For OLED and
+        # users who want the deepest possible feel.
+        "name": "Lusitania — Abyssal Deep",
+        "bg_deepest":   "#0a0d14",
+        "bg_panel":     "#0a0d14",
+        "bg_widget":    "#0f131c",
+        "bg_line":      "#0d1119",
+        "bg_input":     "#0f131c",
+        "bg_dropdown":  "#141926",
+        "border_soft":  "#141926",
+        "border_med":   "#1c2333",
+        "border_guide": "#13182380",
+        "sel_bg":       "#1a2f45",
+        "sel_weak":     "#1a2f4544",
+        "list_inactive":"#0d111a",
     },
     "steel": {
         "name": "Lusitania — Steel",
@@ -125,21 +160,40 @@ DARK_VARIANTS = {
     },
 }
 
-# ── LIGHT VARIANT (Surface) ───────────────────────────────────────────────────
-LIGHT_VARIANT = {
-    "name": "Lusitania — Surface (Light)",
-    "bg_deepest":   "#fafafa",
-    "bg_panel":     "#f5f5f5",
-    "bg_widget":    "#ffffff",
-    "bg_line":      "#f0f4f8",
-    "bg_input":     "#ffffff",
-    "bg_dropdown":  "#eceff1",
-    "border_soft":  "#e0e0e0",
-    "border_med":   "#cfd8dc",
-    "border_guide": "#e8eaed",
-    "sel_bg":       "#b2dfdb",
-    "sel_weak":     "#b2dfdb55",
-    "list_inactive":"#eceff1",
+# ── LIGHT VARIANTS ────────────────────────────────────────────────────────────
+LIGHT_VARIANTS = {
+    "surface": {
+        "name": "Lusitania — Surface (Light)",
+        "bg_deepest":   "#fafafa",
+        "bg_panel":     "#f5f5f5",
+        "bg_widget":    "#ffffff",
+        "bg_line":      "#f0f4f8",
+        "bg_input":     "#ffffff",
+        "bg_dropdown":  "#eceff1",
+        "border_soft":  "#e0e0e0",
+        "border_med":   "#cfd8dc",
+        "border_guide": "#e8eaed",
+        "sel_bg":       "#b2dfdb",
+        "sel_weak":     "#b2dfdb55",
+        "list_inactive":"#eceff1",
+    },
+    "abyssal-light": {
+        # NEW — same light syntax palette as Surface, but with a subtle blue-
+        # green tint in the chrome that ties it back to the Abyssal family.
+        "name": "Lusitania — Abyssal Light",
+        "bg_deepest":   "#f4f7f9",
+        "bg_panel":     "#eef2f5",
+        "bg_widget":    "#ffffff",
+        "bg_line":      "#e8eef2",
+        "bg_input":     "#ffffff",
+        "bg_dropdown":  "#e0e7ec",
+        "border_soft":  "#d4dde3",
+        "border_med":   "#b8c5cd",
+        "border_guide": "#e0e7ec",
+        "sel_bg":       "#a8d8d8",
+        "sel_weak":     "#a8d8d855",
+        "list_inactive":"#e0e7ec",
+    },
 }
 
 
@@ -727,6 +781,145 @@ def build_token_colors(s: dict) -> list:
          "scope": ["constant.language.json"],
          "settings": {"foreground": s["purple"]}},
 
+        # ─── SQL ─────────────────────────────────────────────────────────────
+        # SQL grammars vary across extensions (vscode built-in, mssql, pg, etc).
+        # We cover the canonical scopes from the built-in grammar plus the most
+        # common variants. Rules are ordered specific → general so the SQL ones
+        # win over the generic keyword/function rules above.
+
+        # DML/DDL/DCL keywords → purple. SELECT, FROM, WHERE, JOIN, CREATE...
+        {"name": "SQL keywords",
+         "scope": [
+            "keyword.other.DML.sql", "keyword.other.DDL.sql",
+            "keyword.other.DCL.sql", "keyword.other.alias.sql",
+            "keyword.other.create.sql", "keyword.other.drop.sql",
+            "keyword.other.update.sql", "keyword.other.delete.sql",
+            "keyword.other.insert.sql", "keyword.other.select.sql",
+            "keyword.other.from.sql", "keyword.other.where.sql",
+            "keyword.other.join.sql", "keyword.other.order-by.sql",
+            "keyword.other.group-by.sql", "keyword.other.having.sql",
+            "keyword.other.union.sql", "keyword.other.limit.sql",
+            "keyword.other.sql"
+         ],
+         "settings": {"foreground": s["sql_keyword"]}},
+
+        # SQL operators (AND, OR, NOT, IN, BETWEEN, LIKE, IS NULL...) → cyan
+        {"name": "SQL operators",
+         "scope": [
+            "keyword.operator.logical.sql",
+            "keyword.operator.comparison.sql",
+            "keyword.operator.assignment.sql",
+            "keyword.operator.math.sql",
+            "keyword.operator.concatenator.sql",
+            "keyword.other.operator.sql"
+         ],
+         "settings": {"foreground": s["cyan"]}},
+
+        # SQL types (INT, VARCHAR, TEXT, BOOLEAN, TIMESTAMP...) → purple italic
+        {"name": "SQL data types",
+         "scope": [
+            "storage.type.sql",
+            "support.type.sql",
+            "support.type.builtin.sql"
+         ],
+         "settings": {"foreground": s["purple"], "fontStyle": "italic"}},
+
+        # SQL functions (COUNT, SUM, AVG, NOW, COALESCE, MAX, MIN...) → yellow
+        {"name": "SQL built-in functions",
+         "scope": [
+            "support.function.aggregate.sql",
+            "support.function.scalar.sql",
+            "support.function.string.sql",
+            "support.function.numeric.sql",
+            "support.function.datetime.sql",
+            "support.function.window.sql",
+            "support.function.sql",
+            "meta.function-call.sql entity.name.function",
+            "entity.name.function.sql"
+         ],
+         "settings": {"foreground": s["sql_fn"]}},
+
+        # SQL strings (single-quoted) → green (already covered by string rule,
+        # but explicit to win over any grammar that uses string.unquoted)
+        {"name": "SQL strings",
+         "scope": [
+            "string.quoted.single.sql",
+            "string.quoted.double.sql"
+         ],
+         "settings": {"foreground": s["green"]}},
+
+        # SQL numeric literals → orange (already covered, explicit for safety)
+        {"name": "SQL numbers",
+         "scope": ["constant.numeric.sql"],
+         "settings": {"foreground": s["orange"]}},
+
+        # SQL identifiers — schema, table, column. Different grammars expose
+        # these differently; we set bright fg as the default for column-like
+        # identifiers and yellow for table-like ones.
+        {"name": "SQL table / schema names",
+         "scope": [
+            "entity.name.function.table.sql",
+            "entity.name.table.sql",
+            "constant.other.table-name.sql",
+            "constant.other.database-name.sql",
+            "meta.table-name.sql",
+            "entity.name.schema.sql"
+         ],
+         "settings": {"foreground": s["sql_table"]}},
+
+        {"name": "SQL column names",
+         "scope": [
+            "constant.other.column-name.sql",
+            "entity.name.column.sql",
+            "meta.column-name.sql",
+            "variable.other.column.sql"
+         ],
+         "settings": {"foreground": s["sql_column"]}},
+
+        # SQL aliases (AS foo) → green (type-ish)
+        {"name": "SQL aliases",
+         "scope": [
+            "entity.name.alias.sql",
+            "variable.other.alias.sql"
+         ],
+         "settings": {"foreground": s["sql_alias"]}},
+
+        # SQL quoted identifiers ("my_table", `users`) — keep readable on
+        # backgrounds; treat as table-ish identifier.
+        {"name": "SQL quoted identifiers",
+         "scope": [
+            "string.quoted.other.identifier.sql",
+            "entity.name.identifier.sql"
+         ],
+         "settings": {"foreground": s["sql_table"]}},
+
+        # SQL parameters and bind variables (:id, $1, ?) → orange
+        {"name": "SQL parameters",
+         "scope": [
+            "variable.parameter.sql",
+            "variable.other.bind.sql",
+            "constant.other.placeholder.sql"
+         ],
+         "settings": {"foreground": s["orange"]}},
+
+        # SQL punctuation (commas, parens) → cyan, matches the family
+        {"name": "SQL punctuation",
+         "scope": [
+            "punctuation.separator.comma.sql",
+            "punctuation.definition.parameters.sql",
+            "punctuation.section.scope.sql",
+            "punctuation.terminator.statement.sql"
+         ],
+         "settings": {"foreground": s["cyan"]}},
+
+        # SQL comments — already covered by generic comment, explicit for safety
+        {"name": "SQL comments",
+         "scope": [
+            "comment.line.double-dash.sql",
+            "comment.block.sql"
+         ],
+         "settings": {"foreground": s["fg_dim"], "fontStyle": "italic"}},
+
         # ─── MARKDOWN ────────────────────────────────────────────────────────
         {"name": "Markdown headings",
          "scope": ["markup.heading", "entity.name.section.markdown"],
@@ -791,12 +984,6 @@ def build_semantic_tokens(s: dict) -> dict:
         "class.abstract:typescriptreact": s["green"],
         "class.abstract:javascript":      s["green"],
 
-        # Annotation argument names: queues, name, nullable, value...
-        # In Java, these are technically methods declared in the @interface,
-        # so the JDT language server reports them as "function" or "method".
-        # When called in an annotation (@RabbitListener(queues = ...)), the
-        # Red Hat extension uses the "annotation" modifier on them.
-        # We force orange for these.
         # ─── Java annotation member overrides ────────────────────────────────
         # The JDT language server doesn't expose a single canonical token for
         # annotation argument names (queues, name, nullable, value...).
@@ -862,11 +1049,12 @@ def main():
         path.write_text(json.dumps(theme, indent=2, ensure_ascii=False))
         print(f"Wrote {path}")
 
-    # Build the light variant
-    theme = build_theme(LIGHT_VARIANT["name"], LIGHT_VARIANT, LIGHT_SYNTAX, "light", True)
-    path = out_dir / "lusitania-surface-color-theme.json"
-    path.write_text(json.dumps(theme, indent=2, ensure_ascii=False))
-    print(f"Wrote {path}")
+    # Build all light variants
+    for key, variant in LIGHT_VARIANTS.items():
+        theme = build_theme(variant["name"], variant, LIGHT_SYNTAX, "light", True)
+        path = out_dir / f"lusitania-{key}-color-theme.json"
+        path.write_text(json.dumps(theme, indent=2, ensure_ascii=False))
+        print(f"Wrote {path}")
 
 
 if __name__ == "__main__":

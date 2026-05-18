@@ -5,6 +5,35 @@ All notable changes to **Lusitania Theme** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] — 2026-05-17
+
+### Added
+- **Two new variants** added alongside the existing six:
+  - **Abyssal Deep** (`#0a0d14`) — darker, more dramatic. Matches the new icon
+    background. For OLED screens and the deepest possible feel.
+  - **Abyssal Light** (`#f4f7f9`) — light variant with a subtle blue-green
+    tinted chrome that ties it back to the Abyssal family. Uses the same
+    light syntax palette as Surface.
+- **New icon** — modern brand mark (Lusitania mono) replacing the previous
+  Tide Brackets logo.
+- **SQL syntax tuning** — dedicated rules for SQL grammars:
+  - DML/DDL keywords (`SELECT`, `FROM`, `WHERE`, `CREATE`...) → purple.
+  - Built-in functions (`COUNT`, `SUM`, `NOW`, `COALESCE`...) → yellow.
+  - Table / schema identifiers → yellow.
+  - Column identifiers → bright foreground.
+  - Aliases → green.
+  - Logical / comparison operators (`AND`, `OR`, `IN`, `BETWEEN`...) → cyan.
+  - Data types (`INT`, `VARCHAR`, `TIMESTAMP`...) → purple italic.
+  - Bind variables (`:id`, `$1`, `?`) → orange.
+- **Visual README** — rewritten as a showcase with PNG previews of TS/React
+  (in Abyssal), Java + Spring (in Abyssal Deep), and SQL (in Abyssal Light).
+- `build_previews.py` — generates the SVG mockups and PNGs from a shared
+  palette, kept in sync with `build.py` via direct imports.
+
+### Notes
+- All existing variants (Trench, Midnight, Abyssal, Steel, Oceanic, Surface)
+  and all existing syntax colors are preserved unchanged.
+
 ## [1.0.0] — 2026-05-12
 
 ### Added

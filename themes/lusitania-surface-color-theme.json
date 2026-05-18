@@ -750,6 +750,175 @@
       }
     },
     {
+      "name": "SQL keywords",
+      "scope": [
+        "keyword.other.DML.sql",
+        "keyword.other.DDL.sql",
+        "keyword.other.DCL.sql",
+        "keyword.other.alias.sql",
+        "keyword.other.create.sql",
+        "keyword.other.drop.sql",
+        "keyword.other.update.sql",
+        "keyword.other.delete.sql",
+        "keyword.other.insert.sql",
+        "keyword.other.select.sql",
+        "keyword.other.from.sql",
+        "keyword.other.where.sql",
+        "keyword.other.join.sql",
+        "keyword.other.order-by.sql",
+        "keyword.other.group-by.sql",
+        "keyword.other.having.sql",
+        "keyword.other.union.sql",
+        "keyword.other.limit.sql",
+        "keyword.other.sql"
+      ],
+      "settings": {
+        "foreground": "#7b1fa2"
+      }
+    },
+    {
+      "name": "SQL operators",
+      "scope": [
+        "keyword.operator.logical.sql",
+        "keyword.operator.comparison.sql",
+        "keyword.operator.assignment.sql",
+        "keyword.operator.math.sql",
+        "keyword.operator.concatenator.sql",
+        "keyword.other.operator.sql"
+      ],
+      "settings": {
+        "foreground": "#0288d1"
+      }
+    },
+    {
+      "name": "SQL data types",
+      "scope": [
+        "storage.type.sql",
+        "support.type.sql",
+        "support.type.builtin.sql"
+      ],
+      "settings": {
+        "foreground": "#7b1fa2",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "SQL built-in functions",
+      "scope": [
+        "support.function.aggregate.sql",
+        "support.function.scalar.sql",
+        "support.function.string.sql",
+        "support.function.numeric.sql",
+        "support.function.datetime.sql",
+        "support.function.window.sql",
+        "support.function.sql",
+        "meta.function-call.sql entity.name.function",
+        "entity.name.function.sql"
+      ],
+      "settings": {
+        "foreground": "#c9851a"
+      }
+    },
+    {
+      "name": "SQL strings",
+      "scope": [
+        "string.quoted.single.sql",
+        "string.quoted.double.sql"
+      ],
+      "settings": {
+        "foreground": "#558b2f"
+      }
+    },
+    {
+      "name": "SQL numbers",
+      "scope": [
+        "constant.numeric.sql"
+      ],
+      "settings": {
+        "foreground": "#d84315"
+      }
+    },
+    {
+      "name": "SQL table / schema names",
+      "scope": [
+        "entity.name.function.table.sql",
+        "entity.name.table.sql",
+        "constant.other.table-name.sql",
+        "constant.other.database-name.sql",
+        "meta.table-name.sql",
+        "entity.name.schema.sql"
+      ],
+      "settings": {
+        "foreground": "#c9851a"
+      }
+    },
+    {
+      "name": "SQL column names",
+      "scope": [
+        "constant.other.column-name.sql",
+        "entity.name.column.sql",
+        "meta.column-name.sql",
+        "variable.other.column.sql"
+      ],
+      "settings": {
+        "foreground": "#1a2733"
+      }
+    },
+    {
+      "name": "SQL aliases",
+      "scope": [
+        "entity.name.alias.sql",
+        "variable.other.alias.sql"
+      ],
+      "settings": {
+        "foreground": "#558b2f"
+      }
+    },
+    {
+      "name": "SQL quoted identifiers",
+      "scope": [
+        "string.quoted.other.identifier.sql",
+        "entity.name.identifier.sql"
+      ],
+      "settings": {
+        "foreground": "#c9851a"
+      }
+    },
+    {
+      "name": "SQL parameters",
+      "scope": [
+        "variable.parameter.sql",
+        "variable.other.bind.sql",
+        "constant.other.placeholder.sql"
+      ],
+      "settings": {
+        "foreground": "#d84315"
+      }
+    },
+    {
+      "name": "SQL punctuation",
+      "scope": [
+        "punctuation.separator.comma.sql",
+        "punctuation.definition.parameters.sql",
+        "punctuation.section.scope.sql",
+        "punctuation.terminator.statement.sql"
+      ],
+      "settings": {
+        "foreground": "#0288d1"
+      }
+    },
+    {
+      "name": "SQL comments",
+      "scope": [
+        "comment.line.double-dash.sql",
+        "comment.block.sql"
+      ],
+      "settings": {
+        "foreground": "#90a4ae",
+        "fontStyle": "italic"
+      }
+    },
+    {
       "name": "Markdown headings",
       "scope": [
         "markup.heading",

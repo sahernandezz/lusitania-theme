@@ -1,9 +1,14 @@
 .vscode/**
 .git/**
 .gitignore
+.claude/**
 node_modules/**
 *.vsix
 build.py
+build_previews.py
 icon.svg
+lusitania-mark-mono.svg
+lusitania-mark-mono-1024.png
+previews/*.svg
 PUBLISHING.md
 .DS_Store
