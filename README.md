@@ -33,17 +33,19 @@ Switch with `Cmd/Ctrl+K Cmd/Ctrl+T`.
 
 ## See it in action
 
-### TypeScript / React
+Each language is shown in a different variant so you can compare the three.
 
-<p align="center"><img src="previews/typescript.png" alt="TypeScript & React preview" width="720" /></p>
+### TypeScript / React — *Abyssal*
 
-### Java + Spring annotations
+<p align="center"><img src="previews/typescript.png" alt="TypeScript & React in Abyssal" width="720" /></p>
 
-<p align="center"><img src="previews/java.png" alt="Java with Spring annotations preview" width="720" /></p>
+### Java + Spring annotations — *Abyssal Deep*
 
-### SQL
+<p align="center"><img src="previews/java.png" alt="Java with Spring annotations in Abyssal Deep" width="720" /></p>
 
-<p align="center"><img src="previews/sql.png" alt="SQL preview" width="720" /></p>
+### SQL — *Abyssal Light*
+
+<p align="center"><img src="previews/sql.png" alt="SQL in Abyssal Light" width="720" /></p>
 
 ---
 

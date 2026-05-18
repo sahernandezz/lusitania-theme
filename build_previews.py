@@ -1,61 +1,83 @@
 """
-Generates SVG previews of code rendered with the Lusitania Abyssal palette.
+Generates PNG previews of code rendered with each Lusitania variant.
+- TypeScript / React  → Abyssal       (the canonical deep-blue)
+- Java + Spring       → Abyssal Deep  (the darker variant)
+- SQL                 → Abyssal Light (the light variant)
+
 Each preview looks like a small editor window — title bar, traffic lights,
-line numbers, tokenized code. SVGs render natively on GitHub & the VS Code
-marketplace, so the README always shows the real theme colors.
+line numbers, tokenized code. We render to SVG (source of truth) and then
+convert to PNG via `npx svgexport`, because the VS Code Marketplace strips
+SVGs from README.
+
+Palettes are imported from build.py so they stay in sync automatically.
 
 Run: python3 build_previews.py
-Output: previews/typescript.svg, previews/java.svg, previews/sql.svg
+Output: previews/typescript.png, previews/java.png, previews/sql.png
+        (and the .svg sources alongside them)
 """
 
 from pathlib import Path
 
-# ── Abyssal palette (must stay in sync with build.py DARK_SYNTAX) ─────────────
-P = {
-    "bg":          "#0d1620",
-    "bg_chrome":   "#121d2a",
-    "border":      "#1f3145",
-    "fg":          "#c3cee3",
-    "fg_bright":   "#eeffff",
-    "fg_dim":      "#546e7a",
-    "accent":      "#7fd4d4",
-    "yellow":      "#ffcb6b",
-    "green":       "#c3e88d",
-    "blue":        "#82aaff",
-    "cyan":        "#89ddff",
-    "purple":      "#c792ea",
-    "orange":      "#f78c6c",
-    "red":         "#f07178",
-    "red_strong":  "#ff5370",
-}
+from build import DARK_SYNTAX, LIGHT_SYNTAX, DARK_VARIANTS, LIGHT_VARIANT
 
-# Token shorthand helpers — each returns (text, color, italic).
-def t(s):    return (s, P["fg"], False)         # base text / whitespace
-def k(s):    return (s, P["purple"], False)     # keyword
-def K(s):    return (s, P["purple"], True)      # primitive / italic keyword
-def st(s):   return (s, P["green"], False)      # string
-def n(s):    return (s, P["orange"], False)     # number
-def c(s):    return (s, P["fg_dim"], True)      # comment
-def fn(s):   return (s, P["yellow"], False)     # free function / hook / built-in
-def m(s):    return (s, P["blue"], False)       # method / function declaration
-def cls(s):  return (s, P["yellow"], False)     # class / enum name
-def ty(s):   return (s, P["green"], False)      # type / interface / generic
-def p(s):    return (s, P["orange"], False)     # parameter
-def f(s):    return (s, P["fg_bright"], False)  # field / property / enum member
-def op(s):   return (s, P["cyan"], False)       # operator / punctuation
-def tag(s):  return (s, P["red"], False)        # jsx/html tag
-def at(s):   return (s, P["yellow"], True)      # jsx attribute (italic)
-def an(s):   return (s, P["purple"], False)     # annotation / decorator
-def ak(s):   return (s, P["orange"], False)     # annotation arg name
-def th(s):   return (s, P["red_strong"], False) # this / super
-def b(s):    return (s, P["purple"], False)     # true / false / null
+
+def palette_for(variant: dict, syntax: dict) -> dict:
+    """Merge a variant's UI backgrounds with a syntax palette into a single
+    flat dict the renderer can consume."""
+    return {
+        "bg":          variant["bg_deepest"],
+        "bg_chrome":   variant["bg_widget"],
+        "border":      variant["border_med"],
+        "fg":          syntax["fg"],
+        "fg_bright":   syntax["fg_bright"],
+        "fg_dim":      syntax["fg_dim"],
+        "yellow":      syntax["yellow"],
+        "green":       syntax["green"],
+        "blue":        syntax["blue"],
+        "cyan":        syntax["cyan"],
+        "purple":      syntax["purple"],
+        "orange":      syntax["orange"],
+        "red":         syntax["red"],
+        "red_strong":  syntax["red_strong"],
+    }
+
+
+# Per-preview palette assignments.
+ABYSSAL       = palette_for(DARK_VARIANTS["abyssal"],      DARK_SYNTAX)
+ABYSSAL_DEEP  = palette_for(DARK_VARIANTS["abyssal-deep"], DARK_SYNTAX)
+ABYSSAL_LIGHT = palette_for(LIGHT_VARIANT,                 LIGHT_SYNTAX)
+
+
+# Token shorthand — each returns a (text, palette_key, italic) tuple. We pass
+# the palette in at render time and resolve the key then, so the same token
+# list can render in any variant.
+def t(s):    return (s, "fg",          False)
+def k(s):    return (s, "purple",      False)
+def K(s):    return (s, "purple",      True)
+def st(s):   return (s, "green",       False)
+def n(s):    return (s, "orange",      False)
+def c(s):    return (s, "fg_dim",      True)
+def fn(s):   return (s, "yellow",      False)
+def m(s):    return (s, "blue",        False)
+def cls(s):  return (s, "yellow",      False)
+def ty(s):   return (s, "green",       False)
+def p(s):    return (s, "orange",      False)
+def f(s):    return (s, "fg_bright",   False)
+def op(s):   return (s, "cyan",        False)
+def tag(s):  return (s, "red",         False)
+def at(s):   return (s, "yellow",      True)
+def an(s):   return (s, "purple",      False)
+def ak(s):   return (s, "orange",      False)
+def th(s):   return (s, "red_strong",  False)
+
 
 def esc(s):
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
 
-def render_svg(filename: str, lines: list, output: Path) -> None:
-    """Render a list of token lines as an editor-window SVG."""
+def render_svg(filename: str, lines: list, palette: dict, output: Path) -> None:
+    """Render a list of token lines as an editor-window SVG using the given palette."""
+    P = palette
     pad         = 22
     title_h     = 38
     line_h      = 22
@@ -74,7 +96,6 @@ def render_svg(filename: str, lines: list, output: Path) -> None:
     out = []
     out.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" font-family="Menlo, Consolas, &quot;Courier New&quot;, monospace">')
 
-    # Drop shadow (subtle)
     out.append('<defs><filter id="shadow" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/></filter></defs>')
 
     # Window with rounded corners
@@ -99,15 +120,13 @@ def render_svg(filename: str, lines: list, output: Path) -> None:
     y0 = title_h + pad + font_size - 4
     for i, line in enumerate(lines):
         y = y0 + i * line_h
-        # line number
         out.append(
             f'<text x="{pad + line_num_w}" y="{y}" font-size="{font_size}" fill="{P["fg_dim"]}" text-anchor="end">{i+1}</text>'
         )
-        # tokens
         tspans = []
-        for text, color, italic in line:
+        for text, color_key, italic in line:
             style = ' font-style="italic"' if italic else ''
-            tspans.append(f'<tspan fill="{color}"{style}>{esc(text)}</tspan>')
+            tspans.append(f'<tspan fill="{P[color_key]}"{style}>{esc(text)}</tspan>')
         out.append(
             f'<text x="{code_x}" y="{y}" font-size="{font_size}" xml:space="preserve">' + ''.join(tspans) + '</text>'
         )
@@ -175,12 +194,8 @@ JAVA = [
 ]
 
 # ─── SQL snippet ──────────────────────────────────────────────────────────────
-# Color choices (match build.py SQL palette):
-#   tables (`customers`, `orders`) → yellow via cls()
-#   table aliases (`c`, `o`)       → green  via ty()
-#   columns (`id`, `total`)        → bright via f()
-#   keywords (SELECT, FROM, AS)    → purple via k()
-#   functions (COUNT, SUM, NOW)    → yellow via fn()
+# tables → yellow (cls), table aliases → green (ty), columns → bright (f),
+# keywords → purple (k), functions → yellow (fn).
 SQL = [
     [c("-- Top 10 customers by revenue in the last 30 days")],
     [k("SELECT")],
@@ -219,14 +234,15 @@ def svg_to_png(svg_path: Path) -> None:
 def main():
     out_dir = Path(__file__).parent / "previews"
     out_dir.mkdir(exist_ok=True)
-    svgs = [
-        ("ChatInput.tsx",       TS,   out_dir / "typescript.svg"),
-        ("MessageHandler.java", JAVA, out_dir / "java.svg"),
-        ("top_customers.sql",   SQL,  out_dir / "sql.svg"),
+    # One language per variant — each variant gets its own showcase.
+    previews = [
+        ("ChatInput.tsx",       TS,   ABYSSAL,       out_dir / "typescript.svg"),
+        ("MessageHandler.java", JAVA, ABYSSAL_DEEP,  out_dir / "java.svg"),
+        ("top_customers.sql",   SQL,  ABYSSAL_LIGHT, out_dir / "sql.svg"),
     ]
-    for filename, lines, path in svgs:
-        render_svg(filename, lines, path)
-    for _, _, path in svgs:
+    for filename, lines, palette, path in previews:
+        render_svg(filename, lines, palette, path)
+    for _, _, _, path in previews:
         svg_to_png(path)
 
 
