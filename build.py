@@ -64,6 +64,36 @@ LIGHT_SYNTAX = {
 
 # ── DARK VARIANT BACKGROUNDS ──────────────────────────────────────────────────
 DARK_VARIANTS = {
+    "trench": {
+        "name": "Lusitania — Trench",
+        "bg_deepest":   "#0a0a0a",
+        "bg_panel":     "#0a0a0a",
+        "bg_widget":    "#111111",
+        "bg_line":      "#111111",
+        "bg_input":     "#111111",
+        "bg_dropdown":  "#1a1a1a",
+        "border_soft":  "#1a1a1a",
+        "border_med":   "#2a2a2a",
+        "border_guide": "#1e1e1e",
+        "sel_bg":       "#1f3a3a",
+        "sel_weak":     "#1f3a3a44",
+        "list_inactive":"#141414",
+    },
+    "midnight": {
+        "name": "Lusitania — Midnight",
+        "bg_deepest":   "#15171c",
+        "bg_panel":     "#15171c",
+        "bg_widget":    "#1c1f25",
+        "bg_line":      "#1b1e23",
+        "bg_input":     "#1c1f25",
+        "bg_dropdown":  "#22262d",
+        "border_soft":  "#22262d",
+        "border_med":   "#2f3440",
+        "border_guide": "#262a32",
+        "sel_bg":       "#264040",
+        "sel_weak":     "#26404044",
+        "list_inactive":"#1d2027",
+    },
     "abyssal": {
         # The canonical Lusitania theme — deep blue oceanic.
         "name": "Lusitania — Abyssal",
@@ -81,7 +111,7 @@ DARK_VARIANTS = {
         "list_inactive":"#101d2a",
     },
     "abyssal-deep": {
-        # Darker, more dramatic — matches the icon background. For OLED and
+        # NEW — darker, more dramatic. Matches the icon background. For OLED and
         # users who want the deepest possible feel.
         "name": "Lusitania — Abyssal Deep",
         "bg_deepest":   "#0a0d14",
@@ -97,23 +127,73 @@ DARK_VARIANTS = {
         "sel_weak":     "#1a2f4544",
         "list_inactive":"#0d111a",
     },
+    "steel": {
+        "name": "Lusitania — Steel",
+        "bg_deepest":   "#1c1f26",
+        "bg_panel":     "#1c1f26",
+        "bg_widget":    "#252932",
+        "bg_line":      "#23272f",
+        "bg_input":     "#252932",
+        "bg_dropdown":  "#2c313c",
+        "border_soft":  "#2c313c",
+        "border_med":   "#3a414f",
+        "border_guide": "#2d323c",
+        "sel_bg":       "#324858",
+        "sel_weak":     "#32485844",
+        "list_inactive":"#24282f",
+    },
+    "oceanic": {
+        # Classic Material Oceanic — sampled from user's reference image
+        "name": "Lusitania — Oceanic",
+        "bg_deepest":   "#263238",
+        "bg_panel":     "#263238",
+        "bg_widget":    "#2e3c43",
+        "bg_line":      "#2c3a41",
+        "bg_input":     "#2e3c43",
+        "bg_dropdown":  "#34454d",
+        "border_soft":  "#1e272c",
+        "border_med":   "#3a4a52",
+        "border_guide": "#37474f",
+        "sel_bg":       "#3b514d",
+        "sel_weak":     "#3b514d44",
+        "list_inactive":"#2c3a41",
+    },
 }
 
-# ── LIGHT VARIANT (Abyssal Light) ─────────────────────────────────────────────
-LIGHT_VARIANT = {
-    "name": "Lusitania — Abyssal Light",
-    "bg_deepest":   "#fafafa",
-    "bg_panel":     "#f5f5f5",
-    "bg_widget":    "#ffffff",
-    "bg_line":      "#f0f4f8",
-    "bg_input":     "#ffffff",
-    "bg_dropdown":  "#eceff1",
-    "border_soft":  "#e0e0e0",
-    "border_med":   "#cfd8dc",
-    "border_guide": "#e8eaed",
-    "sel_bg":       "#b2dfdb",
-    "sel_weak":     "#b2dfdb55",
-    "list_inactive":"#eceff1",
+# ── LIGHT VARIANTS ────────────────────────────────────────────────────────────
+LIGHT_VARIANTS = {
+    "surface": {
+        "name": "Lusitania — Surface (Light)",
+        "bg_deepest":   "#fafafa",
+        "bg_panel":     "#f5f5f5",
+        "bg_widget":    "#ffffff",
+        "bg_line":      "#f0f4f8",
+        "bg_input":     "#ffffff",
+        "bg_dropdown":  "#eceff1",
+        "border_soft":  "#e0e0e0",
+        "border_med":   "#cfd8dc",
+        "border_guide": "#e8eaed",
+        "sel_bg":       "#b2dfdb",
+        "sel_weak":     "#b2dfdb55",
+        "list_inactive":"#eceff1",
+    },
+    "abyssal-light": {
+        # NEW — same light syntax palette as Surface, but with a subtle blue-
+        # green tint in the chrome that ties it back to the Abyssal family.
+        "name": "Lusitania — Abyssal Light",
+        "bg_deepest":   "#f4f7f9",
+        "bg_panel":     "#eef2f5",
+        "bg_widget":    "#ffffff",
+        "bg_line":      "#e8eef2",
+        "bg_input":     "#ffffff",
+        "bg_dropdown":  "#e0e7ec",
+        "border_soft":  "#d4dde3",
+        "border_med":   "#b8c5cd",
+        "border_guide": "#e0e7ec",
+        "sel_bg":       "#a8d8d8",
+        "sel_weak":     "#a8d8d855",
+        "list_inactive":"#e0e7ec",
+    },
 }
 
 
@@ -969,11 +1049,12 @@ def main():
         path.write_text(json.dumps(theme, indent=2, ensure_ascii=False))
         print(f"Wrote {path}")
 
-    # Build the light variant
-    theme = build_theme(LIGHT_VARIANT["name"], LIGHT_VARIANT, LIGHT_SYNTAX, "light", True)
-    path = out_dir / "lusitania-abyssal-light-color-theme.json"
-    path.write_text(json.dumps(theme, indent=2, ensure_ascii=False))
-    print(f"Wrote {path}")
+    # Build all light variants
+    for key, variant in LIGHT_VARIANTS.items():
+        theme = build_theme(variant["name"], variant, LIGHT_SYNTAX, "light", True)
+        path = out_dir / f"lusitania-{key}-color-theme.json"
+        path.write_text(json.dumps(theme, indent=2, ensure_ascii=False))
+        print(f"Wrote {path}")
 
 
 if __name__ == "__main__":

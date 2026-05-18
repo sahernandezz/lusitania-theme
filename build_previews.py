@@ -18,7 +18,7 @@ Output: previews/typescript.png, previews/java.png, previews/sql.png
 
 from pathlib import Path
 
-from build import DARK_SYNTAX, LIGHT_SYNTAX, DARK_VARIANTS, LIGHT_VARIANT
+from build import DARK_SYNTAX, LIGHT_SYNTAX, DARK_VARIANTS, LIGHT_VARIANTS
 
 
 def palette_for(variant: dict, syntax: dict) -> dict:
@@ -45,7 +45,7 @@ def palette_for(variant: dict, syntax: dict) -> dict:
 # Per-preview palette assignments.
 ABYSSAL       = palette_for(DARK_VARIANTS["abyssal"],      DARK_SYNTAX)
 ABYSSAL_DEEP  = palette_for(DARK_VARIANTS["abyssal-deep"], DARK_SYNTAX)
-ABYSSAL_LIGHT = palette_for(LIGHT_VARIANT,                 LIGHT_SYNTAX)
+ABYSSAL_LIGHT = palette_for(LIGHT_VARIANTS["abyssal-light"], LIGHT_SYNTAX)
 
 
 # Token shorthand — each returns a (text, palette_key, italic) tuple. We pass

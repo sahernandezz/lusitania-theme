@@ -7,18 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] — 2026-05-17
 
-### Changed
-- **Curated variants**: now ships 3 focused variants instead of 6.
-  - **Abyssal** (`#0d1620`) — the canonical deep-blue oceanic theme.
-  - **Abyssal Deep** (`#0a0d14`) — darker, dramatic, matches the new icon.
-  - **Abyssal Light** (`#f4f7f9`) — light variant with the same deep-sea palette spirit.
-- **New icon** — modern brand mark (Lusitania mono) replacing the previous Tide Brackets logo.
-- **Brand teal** (`#7fd4d4`) is now the single accent across UI: cursor, focus ring,
-  active line numbers, button background, status bar accents.
-- README rewritten as a visual showcase with code previews (TS/React, Java, SQL).
-- Gallery banner color updated to match the new icon background.
-
 ### Added
+- **Two new variants** added alongside the existing six:
+  - **Abyssal Deep** (`#0a0d14`) — darker, more dramatic. Matches the new icon
+    background. For OLED screens and the deepest possible feel.
+  - **Abyssal Light** (`#f4f7f9`) — light variant with a subtle blue-green
+    tinted chrome that ties it back to the Abyssal family. Uses the same
+    light syntax palette as Surface.
+- **New icon** — modern brand mark (Lusitania mono) replacing the previous
+  Tide Brackets logo.
 - **SQL syntax tuning** — dedicated rules for SQL grammars:
   - DML/DDL keywords (`SELECT`, `FROM`, `WHERE`, `CREATE`...) → purple.
   - Built-in functions (`COUNT`, `SUM`, `NOW`, `COALESCE`...) → yellow.
@@ -28,10 +25,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Logical / comparison operators (`AND`, `OR`, `IN`, `BETWEEN`...) → cyan.
   - Data types (`INT`, `VARCHAR`, `TIMESTAMP`...) → purple italic.
   - Bind variables (`:id`, `$1`, `?`) → orange.
+- **Visual README** — rewritten as a showcase with PNG previews of TS/React
+  (in Abyssal), Java + Spring (in Abyssal Deep), and SQL (in Abyssal Light).
+- `build_previews.py` — generates the SVG mockups and PNGs from a shared
+  palette, kept in sync with `build.py` via direct imports.
 
-### Removed
-- Trench, Midnight, Steel, Oceanic, and Surface variants — replaced by the focused
-  Abyssal trio. If you need them, install v1.0.0.
+### Notes
+- All existing variants (Trench, Midnight, Abyssal, Steel, Oceanic, Surface)
+  and all existing syntax colors are preserved unchanged.
 
 ## [1.0.0] — 2026-05-12
 
