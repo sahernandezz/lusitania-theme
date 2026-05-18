@@ -1,8 +1,8 @@
 {
   "name": "lusitania-theme",
   "displayName": "Lusitania Theme",
-  "description": "A deep-sea inspired theme. Six variants \u2014 Trench, Midnight, Abyssal, Steel, Oceanic and Surface (light). Tuned for JS/TS/Java/React with semantic highlighting for abstract classes, interfaces, React hooks and Java annotations.",
-  "version": "1.0.0",
+  "description": "A deep-sea inspired theme. Abyssal blue with two companions — Abyssal Deep and Abyssal Light. Tuned for TypeScript, Java, React, and SQL with semantic highlighting for abstract classes, interfaces, React hooks, and Java annotations.",
+  "version": "1.1.0",
   "publisher": "sahernandezz",
   "icon": "icon.png",
   "license": "MIT",
@@ -18,11 +18,12 @@
     "ocean",
     "oceanic",
     "deep",
+    "abyssal",
     "material",
-    "abyss",
     "react",
     "typescript",
-    "java"
+    "java",
+    "sql"
   ],
   "repository": {
     "type": "git",
@@ -39,34 +40,19 @@
   "contributes": {
     "themes": [
       {
-        "label": "Lusitania \u2014 Trench",
-        "uiTheme": "vs-dark",
-        "path": "./themes/lusitania-trench-color-theme.json"
-      },
-      {
-        "label": "Lusitania \u2014 Midnight",
-        "uiTheme": "vs-dark",
-        "path": "./themes/lusitania-midnight-color-theme.json"
-      },
-      {
-        "label": "Lusitania \u2014 Abyssal",
+        "label": "Lusitania — Abyssal",
         "uiTheme": "vs-dark",
         "path": "./themes/lusitania-abyssal-color-theme.json"
       },
       {
-        "label": "Lusitania \u2014 Steel",
+        "label": "Lusitania — Abyssal Deep",
         "uiTheme": "vs-dark",
-        "path": "./themes/lusitania-steel-color-theme.json"
+        "path": "./themes/lusitania-abyssal-deep-color-theme.json"
       },
       {
-        "label": "Lusitania \u2014 Oceanic",
-        "uiTheme": "vs-dark",
-        "path": "./themes/lusitania-oceanic-color-theme.json"
-      },
-      {
-        "label": "Lusitania \u2014 Surface (Light)",
+        "label": "Lusitania — Abyssal Light",
         "uiTheme": "vs",
-        "path": "./themes/lusitania-surface-color-theme.json"
+        "path": "./themes/lusitania-abyssal-light-color-theme.json"
       }
     ]
   }

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="412" viewBox="0 0 720 412" font-family="Menlo, Consolas, &quot;Courier New&quot;, monospace">
+<defs><filter id="shadow" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/></filter></defs>
+<rect x="0.5" y="0.5" width="719" height="411" rx="10" ry="10" fill="#0d1620" stroke="#1f3145" stroke-width="1" filter="url(#shadow)"/>
+<path d="M 10 0.5 L 710 0.5 Q 719.5 0.5 719.5 10 L 719.5 38 L 0.5 38 L 0.5 10 Q 0.5 0.5 10 0.5 Z" fill="#121d2a"/>
+<line x1="0" y1="38" x2="720" y2="38" stroke="#1f3145" stroke-width="1"/>
+<circle cx="20" cy="19" r="6" fill="#ff5f57"/>
+<circle cx="40" cy="19" r="6" fill="#febc2e"/>
+<circle cx="60" cy="19" r="6" fill="#28c840"/>
+<text x="360" y="23" font-size="12" fill="#546e7a" text-anchor="middle">top_customers.sql</text>
+<text x="52" y="70" font-size="14" fill="#546e7a" text-anchor="end">1</text>
+<text x="66" y="70" font-size="14" xml:space="preserve"><tspan fill="#546e7a" font-style="italic">-- Top 10 customers by revenue in the last 30 days</tspan></text>
+<text x="52" y="92" font-size="14" fill="#546e7a" text-anchor="end">2</text>
+<text x="66" y="92" font-size="14" xml:space="preserve"><tspan fill="#c792ea">SELECT</tspan></text>
+<text x="52" y="114" font-size="14" fill="#546e7a" text-anchor="end">3</text>
+<text x="66" y="114" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#c3e88d">c</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">id</tspan><tspan fill="#c3cee3">            </tspan><tspan fill="#c792ea">AS</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">customer_id</tspan><tspan fill="#89ddff">,</tspan></text>
+<text x="52" y="136" font-size="14" fill="#546e7a" text-anchor="end">4</text>
+<text x="66" y="136" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#c3e88d">c</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">name</tspan><tspan fill="#c3cee3">          </tspan><tspan fill="#c792ea">AS</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">customer_name</tspan><tspan fill="#89ddff">,</tspan></text>
+<text x="52" y="158" font-size="14" fill="#546e7a" text-anchor="end">5</text>
+<text x="66" y="158" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#ffcb6b">COUNT</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">id</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#c3cee3">     </tspan><tspan fill="#c792ea">AS</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">order_count</tspan><tspan fill="#89ddff">,</tspan></text>
+<text x="52" y="180" font-size="14" fill="#546e7a" text-anchor="end">6</text>
+<text x="66" y="180" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#ffcb6b">SUM</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">total</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#c3cee3">    </tspan><tspan fill="#c792ea">AS</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">revenue</tspan><tspan fill="#89ddff">,</tspan></text>
+<text x="52" y="202" font-size="14" fill="#546e7a" text-anchor="end">7</text>
+<text x="66" y="202" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">    </tspan><tspan fill="#ffcb6b">AVG</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">total</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#c3cee3">    </tspan><tspan fill="#c792ea">AS</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">avg_order_value</tspan></text>
+<text x="52" y="224" font-size="14" fill="#546e7a" text-anchor="end">8</text>
+<text x="66" y="224" font-size="14" xml:space="preserve"><tspan fill="#c792ea">FROM</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">customers</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">c</tspan></text>
+<text x="52" y="246" font-size="14" fill="#546e7a" text-anchor="end">9</text>
+<text x="66" y="246" font-size="14" xml:space="preserve"><tspan fill="#c792ea">INNER JOIN</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">orders</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">ON</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">customer_id</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">=</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">c</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">id</tspan></text>
+<text x="52" y="268" font-size="14" fill="#546e7a" text-anchor="end">10</text>
+<text x="66" y="268" font-size="14" xml:space="preserve"><tspan fill="#c792ea">WHERE</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">created_at</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">&gt;=</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">NOW</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">-</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea" font-style="italic">INTERVAL</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">'30 days'</tspan></text>
+<text x="52" y="290" font-size="14" fill="#546e7a" text-anchor="end">11</text>
+<text x="66" y="290" font-size="14" xml:space="preserve"><tspan fill="#c3cee3">  </tspan><tspan fill="#c792ea">AND</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">status</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">NOT IN</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">(</tspan><tspan fill="#c3e88d">'cancelled'</tspan><tspan fill="#89ddff">,</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">'refunded'</tspan><tspan fill="#89ddff">)</tspan></text>
+<text x="52" y="312" font-size="14" fill="#546e7a" text-anchor="end">12</text>
+<text x="66" y="312" font-size="14" xml:space="preserve"><tspan fill="#c792ea">GROUP BY</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">c</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">id</tspan><tspan fill="#89ddff">,</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">c</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">name</tspan></text>
+<text x="52" y="334" font-size="14" fill="#546e7a" text-anchor="end">13</text>
+<text x="66" y="334" font-size="14" xml:space="preserve"><tspan fill="#c792ea">HAVING</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#ffcb6b">SUM</tspan><tspan fill="#89ddff">(</tspan><tspan fill="#c3e88d">o</tspan><tspan fill="#89ddff">.</tspan><tspan fill="#eeffff">total</tspan><tspan fill="#89ddff">)</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#89ddff">&gt;</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#f78c6c">1000</tspan></text>
+<text x="52" y="356" font-size="14" fill="#546e7a" text-anchor="end">14</text>
+<text x="66" y="356" font-size="14" xml:space="preserve"><tspan fill="#c792ea">ORDER BY</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c3e88d">revenue</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#c792ea">DESC</tspan></text>
+<text x="52" y="378" font-size="14" fill="#546e7a" text-anchor="end">15</text>
+<text x="66" y="378" font-size="14" xml:space="preserve"><tspan fill="#c792ea">LIMIT</tspan><tspan fill="#c3cee3"> </tspan><tspan fill="#f78c6c">10</tspan><tspan fill="#89ddff">;</tspan></text>
+</svg>
