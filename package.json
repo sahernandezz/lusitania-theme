@@ -1,8 +1,8 @@
 {
   "name": "lusitania-theme",
   "displayName": "Lusitania Theme",
-  "description": "A deep-sea inspired theme. Eight variants — Trench, Midnight, Abyssal, Abyssal Deep, Steel, Oceanic, plus Surface and Abyssal Light. Tuned for TypeScript, Java, React, and SQL with semantic highlighting for abstract classes, interfaces, React hooks, and Java annotations.",
-  "version": "1.1.0",
+  "description": "A deep-sea theme for VS Code & Cursor. Eight variants — Trench, Midnight, Abyssal, Abyssal Deep, Steel, Oceanic, plus Surface and Abyssal Light. Abyssal blue backgrounds, teal currents, oceanic accents — language-agnostic.",
+  "version": "1.1.1",
   "publisher": "sahernandezz",
   "icon": "icon.png",
   "license": "MIT",
@@ -20,10 +20,7 @@
     "deep",
     "abyssal",
     "material",
-    "react",
-    "typescript",
-    "java",
-    "sql"
+    "lusitania"
   ],
   "repository": {
     "type": "git",

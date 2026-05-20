@@ -5,6 +5,25 @@ All notable changes to **Lusitania Theme** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] — 2026-05-20
+
+### Changed
+- Re-framed the theme as language-agnostic in `package.json` description,
+  marketplace keywords and README. The previous wording said it was *"tuned
+  for TypeScript, Java, React and SQL"* — those grammars receive dedicated
+  syntax rules, but every language VS Code knows about is themed. The
+  preview screenshots are now labelled as *illustrative, not prescriptive*.
+- Repository hygiene: dropped `.claude/`, `.DS_Store` and intermediate
+  preview SVGs from the tree; hardened `.gitignore` / `.vscodeignore` with
+  patterns for secrets, lockfiles and editor metadata. README gained
+  Install, Pairs-well-with, Security, Build and License sections so it
+  stands alone on the marketplace.
+- Pairs with the new [Lusitania Icon Theme](https://github.com/sahernandezz/lusitania-icon-theme)
+  for matching file & folder icons.
+
+### Notes
+- No colour or syntax-rule changes. Existing setups upgrade transparently.
+
 ## [1.1.0] — 2026-05-17
 
 ### Added
