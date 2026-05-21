@@ -88,7 +88,7 @@ Three sample languages, each in a different variant — illustrative, not prescr
 
 ## Pairs well with
 
-[Lusitania Icon Theme](https://github.com/sahernandezz/lusitania-icon-theme) — matching file & folder icons, same palette.
+[Lusitania Icon Theme](https://github.com/sahernandezz/lusitania-icons-theme) — matching file & folder icons, same palette.
 
 ## Security
 
