@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   patterns for secrets, lockfiles and editor metadata. README gained
   Install, Pairs-well-with, Security, Build and License sections so it
   stands alone on the marketplace.
-- Pairs with the new [Lusitania Icon Theme](https://github.com/sahernandezz/lusitania-icons-theme)
+- Pairs with the new [Lusitania Icons Theme](https://github.com/sahernandezz/lusitania-icons-theme)
   for matching file & folder icons.
 
 ### Notes
